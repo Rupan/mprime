@@ -8,6 +8,12 @@ URL:            http://www.mersenne.org/
 Requires:       libstdc++, libcurl
 BuildRequires:  libstdc++-devel, libcurl-devel
 Source0:        p95v287.source.zip
+%ifarch %{ix86}
+Source1:        p95v287.linux32.tar.gz
+%endif
+%ifarch x86_64
+Source1:        p95v287.linux64.tar.gz
+%endif
 Patch0:         mprime-28.7-dynamic-link.patch
 
 %description
@@ -17,7 +23,9 @@ project dedicated to finding Mersenne primes.
 %prep
 %setup -c -n %{name}-%{version}
 %patch0 -p1
-#cp %{SOURCE1} README.mprime
+mkdir -p docs
+tar xf %{SOURCE1} -C docs --exclude=mprime
+chmod 644 docs/*
 
 %build
 %ifarch x86_64
@@ -37,6 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %{_bindir}/mprime
+%doc docs/*.txt
 
 %changelog
 * Thu Jan 28 2016 Michael Mohr <akihana@gmail.com> - 28.7-1
