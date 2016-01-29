@@ -1,6 +1,6 @@
 Name:           mprime
 Version:        28.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Group:          Applications/System
 Summary:        Great Internet Mersenne Prime Search
 License:        GIMPS free software license
@@ -35,9 +35,19 @@ cd ../linux64
 make -f makefile
 cd ..
 %endif
+%ifarch %{ix86}
+cd gwnum
+make -f makefile
+cd ../linux
+make -f makefile
+cd ..
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
+%ifarch %{ix86}
+%{__install} -D -m 0755 linux/mprime %{buildroot}%{_bindir}/mprime
+%endif
 %ifarch x86_64
 %{__install} -D -m 0755 linux64/mprime %{buildroot}%{_bindir}/mprime
 %endif
@@ -48,5 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.txt
 
 %changelog
+* Thu Jan 28 2016 Michael Mohr <akihana@gmail.com> - 28.7-2
+- Add documentation, untested 32-bit support.
 * Thu Jan 28 2016 Michael Mohr <akihana@gmail.com> - 28.7-1
 - Initial package release.
