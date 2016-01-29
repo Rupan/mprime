@@ -14,7 +14,7 @@ tested on those systems.  Patches are welcome.
 
 You'll need an appropriately-configured development environment:
 
-    # sudo yum install libstdc++devel libcurl-devel rpmdevtools
+    # sudo yum install libstdc++-devel libcurl-devel rpmdevtools wget
     # sudo yum groupinstall 'Development Tools'
 
 Then you'll need to fetch the source material before you can proceed with
