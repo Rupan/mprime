@@ -1,5 +1,5 @@
 Name:           mprime
-Version:        28.10
+Version:        29.4b5
 Release:        1%{?dist}
 Group:          Applications/System
 Summary:        Great Internet Mersenne Prime Search
@@ -8,12 +8,12 @@ URL:            http://www.mersenne.org/
 Requires:       libstdc++, libcurl
 BuildRequires:  libstdc++-devel, libcurl-devel
 ExclusiveArch:  %{ix86} x86_64
-Source0:        p95v2810.source.zip
+Source0:        p95v294b5.source.zip
 %ifarch %{ix86}
-Source1:        p95v2810.linux32.tar.gz
+Source1:        p95v294b5.linux32.tar.gz
 %endif
 %ifarch x86_64
-Source1:        p95v2810.linux64.tar.gz
+Source1:        p95v294b5.linux64.tar.gz
 %endif
 Patch0:         mprime-28.7-dynamic-link.patch
 
@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.txt
 
 %changelog
+* Mon Dec 04 2017 Mohr <akihana@gmail.com> - 29.4b5-1
+- New upstream release.
+
 * Wed Sep 06 2017 Michael Mohr <akihana@gmail.com> - 28.10-1
 - New upstream release.
 
